@@ -25,5 +25,5 @@
   <delete id="deleteStudent" parameterType="co.yedam.vo.Student">
     delete tbl_student
     where std_no = (#{stdNo})
-  </update>
+  </delete>
 </mapper>
