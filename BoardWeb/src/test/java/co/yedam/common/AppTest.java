@@ -30,12 +30,12 @@ public class AppTest {
 		sqlSession.commit();
 
 		// 학생 삭제
-           	std.setStdNo("s0020");
+        std.setStdNo("s0020");
             
-            	sqlSession.delete("co.yedam.mapper.StudentMapper.deleteStudent", std);
+        sqlSession.delete("co.yedam.mapper.StudentMapper.deleteStudent", std);
             
-                mapper.deleteStudent(std);
-                sqlSession.commit();
+        mapper.deleteStudent(std);
+        sqlSession.commit();
 		
 		List<Student> list //
 				= sqlSession.selectList("co.yedam.mapper.StudentMapper.selectBlog");
