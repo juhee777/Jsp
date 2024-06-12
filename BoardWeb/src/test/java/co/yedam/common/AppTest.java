@@ -5,49 +5,29 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
 import co.yedam.mapper.BoardMapper;
+import co.yedam.service.BoardService;
+import co.yedam.service.BoardServicrImpl;
 import co.yedam.vo.BoardVO;
 
 public class AppTest {
 	public static void main(String[] args) {
-		SqlSessionFactory sqlSessionFactory = DataSource.getInstance();
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		
-		//interface - 구현객체
-		BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
-		
-		List<BoardVO> list = mapper.boardList();
-		for(BoardVO bvo : list) {
-			System.out.println(bvo.toString());
-		}
-		
-//		Student std = new Student();
-//		std.setStdNo("s0020");
-//		std.setStdName("김영만");
-//		std.setPhone("010-8566-0342");
-//		std.setBldType("A");
+//		SqlSessionFactory sqlSessionFactory = DataSource.getInstance();
+//		SqlSession sqlSession = sqlSessionFactory.openSession();
 //		
-////		sqlSession.insert("co.yedam.mapper.StudentMapper.insertStudent", std);
-////		sqlSession.commit();
+//		//interface - 구현객체
+//		BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
 //		
-//		sqlSession.update("co.yedam.mapper.StudentMapper.updateStudent", std);
-//		mapper.updateStudent(std);
-//		sqlSession.commit();
-//
-//		// 학생 삭제
-//        std.setStdNo("s0020");
-//            
-//        sqlSession.delete("co.yedam.mapper.StudentMapper.deleteStudent", std);
-//            
-//        mapper.deleteStudent(std);
-//        sqlSession.commit();
-//		
-//		List<Student> list //
-//				= sqlSession.selectList("co.yedam.mapper.StudentMapper.selectBlog");
-////		        = mapper.selectBlog();
-//		for(Student std1 : list) {
-//			System.out.println(std1.toString());
+//		List<BoardVO> list = mapper.boardListPaging(3);
+//		for(BoardVO bvo : list) {
+//			System.out.println(bvo.toString());
 //		}
+		
+		BoardService svc = new BoardServicrImpl();
+		
+		System.out.println(svc.getBoard(100));
+		
 		
 	}
 }
