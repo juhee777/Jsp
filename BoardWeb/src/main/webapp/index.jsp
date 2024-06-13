@@ -7,6 +7,7 @@
 <title>게시판 첫페이지입니다.</title>
 </head>
 <body>
+  <jsp:forward page="main.do"></jsp:forward> <!-- main.do로 페이지를 제지정 -->
   <h3>Hello, World!!</h3>
   <a href="main.do">main 페이지로 이동</a>
 </body>

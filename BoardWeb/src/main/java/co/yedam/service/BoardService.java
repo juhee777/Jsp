@@ -9,6 +9,9 @@ public interface BoardService {
 	int boardTotal(); 
 	BoardVO getBoard(int bno); //단건조회.
 	boolean addBoard(BoardVO bvo);
-	boolean editBoard(BoardVO bvo);
+	boolean editBoard(BoardVO bvo);//수정
 	boolean deleteBoard(int bno);
+	
+	//checkMember(id, pw)
+	boolean checkMember(String id, String pw);
 }

@@ -51,6 +51,12 @@ public class BoardServicrImpl  implements BoardService{
 		return mapper.deleteBoard(bno) == 1;
 	}
 	
+	@Override
+	public boolean checkMember(String id, String pw) {
+		// TODO Auto-generated method stub
+		return mapper.selectMember(id, pw) == 1;
+	}
+	
 	
 
 }

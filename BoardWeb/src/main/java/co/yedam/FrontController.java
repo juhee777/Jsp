@@ -16,7 +16,14 @@ import co.yedam.web.AddForm;
 import co.yedam.web.AddStudent;
 import co.yedam.web.BoardList;
 import co.yedam.web.GetBoard;
+import co.yedam.web.LoginControl;
+import co.yedam.web.LoginForm;
+import co.yedam.web.LogoutControl;
 import co.yedam.web.MainControl;
+import co.yedam.web.ModifyBoard;
+import co.yedam.web.ModifyForm;
+import co.yedam.web.RemoveBoard;
+import co.yedam.web.RemoveForm;
 import co.yedam.web.StudentForm;
 import co.yedam.web.productControl;
 
@@ -46,6 +53,20 @@ public class FrontController extends HttpServlet {
 		//등록
 		map.put("/addForm.do", new AddForm());//등록화면
 		map.put("/addBoard.do", new AddBoard() );//정보db
+		//삭제
+		map.put("/removeForm.do", new RemoveForm());//삭제화면
+		map.put("/removeBoard.do", new RemoveBoard());//삭제기능
+		//수정화면
+		map.put("/modifyForm.do", new ModifyForm());
+		//수정처리
+		map.put("/modifyBoard.do", new ModifyBoard());
+		//로그인화면
+		map.put("/loginForm.do", new LoginForm());
+		//로그인기능
+		map.put("/login.do", new LoginControl());
+		//로그아웃
+		map.put("/logout.do", new LogoutControl());
+		
 	}
 
 	@Override
