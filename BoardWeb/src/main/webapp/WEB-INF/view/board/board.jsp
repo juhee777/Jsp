@@ -2,13 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<jsp:include page="../public/header.jsp" />
+
 
 
 
 <h3>상세화면(board.jsp)</h3>
 <form name="mayFrm" action="removeForm.do"> 
-<input type="hidden" value="${board.boardNo}" name="bno">
+<input type="hidden" value="${page }" name="page">
+<input type="hidden" value="${board.boardNo }" name="bno">
+<input type="hidden" value="${searchCondition }" name="searchCondition">
+<input type="hidden" value="${keyword }" name="keyword">
 <table class="table">
    <tr>
    <th class="col-sm-1">글번호</th>
@@ -58,5 +61,5 @@
  
 </script>
 
-<a href="boardList.do?page=${page }" class="btn btn-success">목록으로 이동</a>
-<jsp:include page="../public/footer.jsp" />
+<a href="boardList.do?page=${page }"class="btn btn-success">목록으로 이동</a>
+

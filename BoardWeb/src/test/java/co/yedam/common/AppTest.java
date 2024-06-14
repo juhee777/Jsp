@@ -1,33 +1,18 @@
 package co.yedam.common;
 
-import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 
-import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
 import co.yedam.mapper.BoardMapper;
-import co.yedam.service.BoardService;
-import co.yedam.service.BoardServicrImpl;
-import co.yedam.vo.BoardVO;
 
 public class AppTest {
 	public static void main(String[] args) {
-//		SqlSessionFactory sqlSessionFactory = DataSource.getInstance();
-//		SqlSession sqlSession = sqlSessionFactory.openSession();
-//		
-//		//interface - 구현객체
-//		BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
-//		
-//		List<BoardVO> list = mapper.boardListPaging(3);
-//		for(BoardVO bvo : list) {
-//			System.out.println(bvo.toString());
-//		}
+		SqlSession sqlSession =
+				DataSource.getInstance().openSession(true); // true를 매개값으로 넣으면 자동커밋
+		BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
 		
-		BoardService svc = new BoardServicrImpl();
+		SearchVO search = new SearchVO(1, "T", "java");
 		
-		System.out.println(svc.getBoard(100));
-		
+		mapper.boardListPaging(search).forEach(bvo -> System.out.println(bvo));
 		
 	}
 }

@@ -17,6 +17,9 @@ public class ModifyForm implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String bno = req.getParameter("bno");
+		String page = req.getParameter("page");
+		String sc = req.getParameter("searchCondition"); //페이지 값 계속 가져오게
+		String kw = req.getParameter("keyword");
 		//글번호 bno 정보를 조회
 		
 		BoardService svc = new BoardServicrImpl();
@@ -24,6 +27,9 @@ public class ModifyForm implements Control {
 		
 		//요청정보의 attribute(=board)
 		req.setAttribute("board", board);
+		req.setAttribute("page", page);
+		req.setAttribute("searchCondition", sc);
+		req.setAttribute("keyword", kw);
 		
 		req.getRequestDispatcher("WEB-INF/view/modifyBoardForm.jsp")
 		.forward(req, resp);

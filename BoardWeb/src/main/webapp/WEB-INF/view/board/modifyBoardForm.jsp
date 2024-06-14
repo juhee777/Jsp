@@ -2,10 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!-- modifyBoardForm.jsp -->
-<%@include file="../public/header.jsp" %>
+
 <h3>수정화면(modifyBoardForm.jsp)</h3>
 
 <form action="modifyBoard.do">
+<input type="hidden" value="${searchCondition }" name="searchCondition">
+<input type="hidden" value="${keyword }" name="keyword">
+<input type="hidden" value="${page }" name="page">
 <table class="table">
   <tr>
     <th>글번호</th><td><input type="text" readonly value="${board.boardNo }" name="bno"></td>
@@ -25,10 +28,11 @@
     <th>작성일시</th><td><c:out value="${board.creationDate }"></c:out></td>
   </tr>
   <tr>
-    <td colspan="4"><input class="btn btn-warning" type="submit" value="수정처리">
+    <td colspan="4">
+    <input class="btn btn-warning" type="submit" value="수정처리">
+    
     </td>
   </tr>
 </table>
 </form>
 
-<%@include file="../public/footer.jsp" %>

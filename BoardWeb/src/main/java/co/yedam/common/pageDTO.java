@@ -21,6 +21,7 @@ public class pageDTO {
 		
 		this.prev = this.startPate > 1;
 		this.next = this.endPage == realEnd ? false : true;
+		
 	}
 	
 }

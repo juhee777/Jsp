@@ -35,7 +35,7 @@ public class MainControl implements Control{
 		req.setAttribute("student", student); //student값을 지정
 		req.setAttribute("StudentList", list);
 		
-		req.getRequestDispatcher("WEB-INF/public/main.jsp") //http://localhost/BoardWeb/main.do
+		req.getRequestDispatcher("member/main.tiles") //http://localhost/BoardWeb/main.do
 		.forward(req, resp);
 		
 	}
