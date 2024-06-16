@@ -33,7 +33,7 @@ public class ModifyBoard implements Control {
 		if(svc.editBoard(bvo)) {
 			resp.sendRedirect("boardList.do?page="+page+"&searchCondition="+sc+"&keyword="+kw);
 		}else {
-			req.getRequestDispatcher("WEB-INF/view/modifyBoardForm.jsp").forward(req, resp);
+			req.getRequestDispatcher("board/modifyBoardForm.tiles").forward(req, resp);
 		}
 		
 	}

@@ -29,7 +29,8 @@
 
 </c:when>
 <c:otherwise>
-<h3>로그인 화면(loginForm.jsp)</h3>
+1=1
+<!-- <h3>로그인 화면(loginForm.jsp)</h3>
 <form action="login.do">
 <table class="table">
 	<tr>
@@ -44,7 +45,7 @@
 		<td colspan="2"><input type="submit" value="로그인"></td>
 	</tr>
 </table>
-</form>
+</form> -->
 </c:otherwise>
 </c:choose>
 

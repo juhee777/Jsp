@@ -58,6 +58,12 @@ public class BoardServicrImpl  implements BoardService{
 		return mapper.selectMember(id, pw) == 1;
 	}
 	
+	@Override
+	public boolean signUpBoard(BoardVO bvo) {
+		// TODO Auto-generated method stub
+		return mapper.insertBoard(bvo) == 1;
+	}
+	
 	
 
 }
