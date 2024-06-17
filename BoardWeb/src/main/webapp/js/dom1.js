@@ -12,9 +12,9 @@ for (let mem of myMembers) {
 }
 
 //추가버튼 클릭이벤트 등록.
-document.getElementById('addBtn').addEventListener('click', addMemberFnc);
-document.getElementById('modBtn').addEventListener('click', modMemberFnc);
-document.getElementById('delBtn').addEventListener('click', removeMemberFnc);
+document.getElementById('addBtn').addEventListener('click', addMemberFnc); //추가
+document.getElementById('modBtn').addEventListener('click', modMemberFnc); //수정
+document.getElementById('delBtn').addEventListener('click', removeMemberFnc); //선택삭제
 
 //체크박스 전체선택/해제 힌트
 document.querySelector('thead input[type="checkbox"]').addEventListener('change',allCheckFnc);
@@ -69,14 +69,14 @@ function addMemberFnc() {
 
 function addRow(member = { id, name, phone, point }) { //member 오브젝트타입 -> 4가지 속성(id, name, phone, point)
 	// tr > td * 4
-	const tr = document.createElement('tr');
-	tr.addEventListener('click', showDetailFnc);
+	const tr = document.createElement('tr'); //<tr>생성
+	tr.addEventListener('click', showDetailFnc); //'click'이벤트가 발생할때 showDetailFnc함수가 호출
 	
 	// for(Student std : stuList)
 	for (let prop in member) {
-		const td = document.createElement('td');
+		const td = document.createElement('td'); //<td>생성
 		td.innerHTML = member[prop];// member.id, member.name, member.phone
-		tr.appendChild(td);//()안에 있는게 하위요소로 지정하겠다.
+		tr.appendChild(td);//()안에 있는게 하위요소로 지정하겠다. <td>요소를 <tr>에 추가 => <tr><td></td></tr>
 	}
 	//삭제버튼 생성
 	//<tr><td><button>삭제<button></td></tr>
@@ -90,6 +90,7 @@ function addRow(member = { id, name, phone, point }) { //member 오브젝트타�
 	td = document.createElement('td');
 	btn = document.createElement('input');
 	btn.setAttribute('type','checkbox');
+	btn.addEventListener('click',allchecking);
 	td.appendChild(btn);
 	tr.appendChild(td)
 	
@@ -131,3 +132,10 @@ function modMemberFnc(){
 		}
 	}
 }//end of modMemberFnc()
+
+function allchecking(){
+	let allCheck = document.querySelector('thead input[type="checkbox"]');
+	if(!this.checked){
+		allCheck.checked = false;
+	}
+}
