@@ -13,7 +13,7 @@ import co.yedam.common.DataSource;
 import co.yedam.mapper.BoardMapper;
 import co.yedam.service.BoardService;
 import co.yedam.service.BoardServicrImpl;
-import co.yedam.vo.BoardVO;
+import co.yedam.vo.MemberVO;
 
 public class SignUpBoard implements Control {
 
@@ -29,10 +29,10 @@ public class SignUpBoard implements Control {
 		SqlSession sqlSession = DataSource.getInstance().openSession();
 		BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
 		
-		BoardVO board = new BoardVO();
-		board.setId(id);
-		board.setPw(pw);
-		board.setName(name);
+		MemberVO board = new MemberVO();
+		board.setUserId(id);
+		board.setUserPw(pw);
+		board.setUserName(name);
 		
 		if(svc.signUpBoard(board)) {
 			System.out.println("정상등록");

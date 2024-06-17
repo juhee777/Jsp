@@ -11,6 +11,7 @@ import co.yedam.vo.BoardVO;
 /*
  * 업무프로세스를 따라 실행하기 위한 서비스
  */
+import co.yedam.vo.MemberVO;
 
 public class BoardServicrImpl  implements BoardService{
 	SqlSession sqlSession =
@@ -53,15 +54,15 @@ public class BoardServicrImpl  implements BoardService{
 	}
 	
 	@Override
-	public boolean checkMember(String id, String pw) {
+	public MemberVO checkMember(String id, String pw) {
 		// TODO Auto-generated method stub
-		return mapper.selectMember(id, pw) == 1;
+		return mapper.selectMember(id, pw);
 	}
 	
 	@Override
-	public boolean signUpBoard(BoardVO bvo) {
+	public boolean signUpBoard(MemberVO bvo) {
 		// TODO Auto-generated method stub
-		return mapper.insertBoard(bvo) == 1;
+		return mapper.insertMember(bvo) == 1;
 	}
 	
 	

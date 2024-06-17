@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import co.yedam.common.Control;
 import co.yedam.service.BoardService;
 import co.yedam.service.BoardServicrImpl;
+import co.yedam.vo.MemberVO;
 
 public class LoginControl implements Control {
 
@@ -20,14 +21,18 @@ public class LoginControl implements Control {
 		String pw = req.getParameter("pw");
 		
 		BoardService svc = new BoardServicrImpl();
-		
-		if(svc.checkMember(id, pw)) {
+		MemberVO mvo = svc.checkMember(id, pw);
+		if(mvo != null) {
 			//로그인이 정상적으로 맞으면
 	        HttpSession session = req.getSession(); 
 	        session.setAttribute("logId", id);
 	        
-	        
-			resp.sendRedirect("main.do");
+	        if(mvo.getResponsibility().equals("User")) {
+	        	resp.sendRedirect("main.do");
+	        	
+	        }else if(mvo.getResponsibility().equals("Admin")) {
+	        	resp.sendRedirect("memberList.do");
+	        }
 		}else {
 			resp.sendRedirect("loginForm.do");
 			
