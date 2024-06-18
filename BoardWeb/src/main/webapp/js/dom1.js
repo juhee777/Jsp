@@ -3,7 +3,7 @@
  */
 document.getElementById('fruit').style.display = 'none';
 
-document.querySelector('table.table tr:nth-of-type(5)').setAttribute('align', 'center');//가운데 정렬
+document.querySelector('table.table tr:nth-of-type(5)').setAttribute('align', 'center');//버튼가운데 정렬
 
 //페이지 로딩하면서 회원3명 출력.
 console.log(myMembers);//배열들고옴
@@ -12,7 +12,7 @@ for (let mem of myMembers) {
 }
 
 //추가버튼 클릭이벤트 등록.
-document.getElementById('addBtn').addEventListener('click', addMemberFnc); //추가
+document.getElementById('addBtn').addEventListener('click', addMemberFnc); //추가 클릭하면 함수 실행
 document.getElementById('modBtn').addEventListener('click', modMemberFnc); //수정
 document.getElementById('delBtn').addEventListener('click', removeMemberFnc); //선택삭제
 
@@ -90,7 +90,7 @@ function addRow(member = { id, name, phone, point }) { //member 오브젝트타�
 	td = document.createElement('td');
 	btn = document.createElement('input');
 	btn.setAttribute('type','checkbox');
-	btn.addEventListener('click',allchecking);
+	btn.addEventListener('click',allchecking);//해제
 	td.appendChild(btn);
 	tr.appendChild(td)
 	
@@ -105,11 +105,11 @@ function removeTrElement(e){ //매개변수 e(이벤트)
 	this.parentElement.parentElement.remove(); //parentElement가 상위 this의 상위의 상위 tr을 삭제
 }
 
-function showDetailFnc(e){
+function showDetailFnc(e){ //이벤트객체 e를 출력하여 이벤트에 대한 정보 확인
 	console.log('btn',e);
 	//tr의 자식요소의 값을 입력 input에 반환
 	console.dir(this.children[1].innerText);
-	document.getElementById('mid').value = this.children[0].innerText;
+	document.getElementById('mid').value = this.children[0].innerText; 
 	document.getElementById('mname').value = this.children[1].innerText;
 	document.getElementById('mphone').value = this.children[2].innerText;
 	document.getElementById('mpoint').value = this.children[3].innerText;
