@@ -19,4 +19,10 @@ public interface BoardService {
 	
 	boolean signUpBoard(MemberVO bvo);
 	
+	List<MemberVO> memberList();
+	
+	boolean addMemberAjax(MemberVO bvo);
+	boolean checkMemberId(String id);
+	boolean delMemberAjax(String id);
+	
 }

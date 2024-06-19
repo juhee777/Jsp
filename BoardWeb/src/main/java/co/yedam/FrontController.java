@@ -14,12 +14,17 @@ import co.yedam.common.Control;
 import co.yedam.web.AddBoard;
 import co.yedam.web.AddForm;
 import co.yedam.web.AddStudent;
+import co.yedam.web.AjaxForm;
 import co.yedam.web.BoardList;
+import co.yedam.web.CheckIdAjax;
 import co.yedam.web.GetBoard;
 import co.yedam.web.LoginControl;
 import co.yedam.web.LoginForm;
 import co.yedam.web.LogoutControl;
 import co.yedam.web.MainControl;
+import co.yedam.web.MemberAddAjax;
+import co.yedam.web.MemberAjax;
+import co.yedam.web.MemberDelAjax;
 import co.yedam.web.MemberList;
 import co.yedam.web.ModifyBoard;
 import co.yedam.web.ModifyForm;
@@ -80,6 +85,12 @@ public class FrontController extends HttpServlet {
 		
 		//자바스크립트 연습용 페이지
 		map.put("/script.do", new ScriptForm());
+		//ajax연습
+		map.put("/ajax.do", new AjaxForm());
+		map.put("/membersAjax.do", new MemberAjax());
+		map.put("/addAjax.do", new MemberAddAjax());//기능
+		map.put("/checkIdAjax.do", new CheckIdAjax());
+		map.put("/delAjax.do", new MemberDelAjax());//삭제기능
 		
 	}
 

@@ -62,12 +62,12 @@ function makeCalendar(month = 6){
 	thd.appendChild(tr);//<thead><tr></tr></thead>
 	
 	//tbody 하위요소.
-	tr = document.createElement('tr'); //<tbody><tr>
+	tr = document.createElement('tr'); //<tr>생성 공간만 만들고 있음
 	
 	//빈날짜
 	for(let i = 1; i < firstDay; i++){//빈칸 6칸을 넣고 첫 시작 1이 7번째 자리
-		let td = document.createElement('td');
-		tr.appendChild(td);
+		let td = document.createElement('td'); //빈<tr>생성
+		tr.appendChild(td); //<tr>에 추가하여 <td>빈 칸 생성 
 	}
 	
 	//날짜출력

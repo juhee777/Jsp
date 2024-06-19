@@ -94,4 +94,4 @@
 <div id="show"></div>
 
 <script src="js/data.js"></script><!-- 데이터 모아놈 -->
-<script src="js/calendar.js"></script>
+<script src="js/dom1.js"></script>
