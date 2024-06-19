@@ -26,6 +26,7 @@ import co.yedam.web.MemberAddAjax;
 import co.yedam.web.MemberAjax;
 import co.yedam.web.MemberDelAjax;
 import co.yedam.web.MemberList;
+import co.yedam.web.MemberUpdAjax;
 import co.yedam.web.ModifyBoard;
 import co.yedam.web.ModifyForm;
 import co.yedam.web.RemoveBoard;
@@ -91,6 +92,7 @@ public class FrontController extends HttpServlet {
 		map.put("/addAjax.do", new MemberAddAjax());//기능
 		map.put("/checkIdAjax.do", new CheckIdAjax());
 		map.put("/delAjax.do", new MemberDelAjax());//삭제기능
+		map.put("/updAjax.do", new MemberUpdAjax());//수정기능
 		
 	}
 

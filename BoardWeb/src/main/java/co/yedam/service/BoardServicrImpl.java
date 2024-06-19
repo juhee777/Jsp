@@ -87,4 +87,10 @@ public class BoardServicrImpl  implements BoardService{
 		// TODO Auto-generated method stub
 		return mapper.deleteMemberAjax(id) == 1;
 	}
+	
+	@Override
+	public boolean updMemberAjax(MemberVO bvo) {
+		// TODO Auto-generated method stub
+		return mapper.updateMemberAjax(bvo) == 1;
+	}
 }

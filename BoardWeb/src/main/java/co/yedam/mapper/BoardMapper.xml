@@ -124,6 +124,13 @@
 		where user_id = #{id} 
 	</delete>
 	
+	<update id="updateMemberAjax" parameterType="co.yedam.vo.MemberVO">
+		update member_tbl 
+	    set  user_name = #{name},
+	         user_pw = #{pw}
+	    where user_id = #{id}
+	</update>
+	
 	
 
 	<!-- <insert id="insertBoard" parameterType="co.yedam.vo.BoardVO"> insert 
