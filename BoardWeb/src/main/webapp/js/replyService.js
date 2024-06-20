@@ -25,10 +25,10 @@ const svc = {
 	//등록.
 	addReply(rvo = { replyer, reply, bno }, successCall) {
 		const xhtp = new XMLHttpRequest();
-		xhtp.open('post', 'addReply.do');
+		xhtp.open('post', 'addReply.do'); //post요청을 addReply.do로 설정
 		xhtp.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 		xhtp.send('bno=' + rvo.bno + '&reply=' + rvo.reply + '&replyer=' + rvo.replyer);
-		xhtp.onload = successCall;     
+		xhtp.onload = successCall; //요청되었을 때 실행되는 콜백함수   
 	},
 	//삭제.
 	removeReply(rno = 1, successCall) {

@@ -40,19 +40,19 @@ public class AddReply implements Control {
 		
 		ReplyService svc = new ReplyServicelmpl();
 		try {//insert값이 정상적으로 처리된 경우를 제외하고는 오류로 보겠다
-			if(svc.registerReply(rvo)) {
+			if(svc.registerReply(rvo)) { //insert값이 정상적으로 처리된 경우
 				rvo.setReplyDate(new Date());
 				System.out.println(rvo);
-				map.put("retCode", "OK");
-				map.put("retVal", rvo);
+				map.put("retCode", "OK"); //retCode키에 OK메세지 저장
+				map.put("retVal", rvo); //retVal키에 rvo객체 저장
 			}
-		}catch(Exception e) {
+		}catch(Exception e) {//오류발생시
 			e.printStackTrace();
 			map.put("retCode", "NG");
 			map.put("retVal", "처리중 오류가 발생했습니다");
 		}
 		//웹브라우즈 출력.
-		resp.getWriter().print(gson.toJson(map));
+		resp.getWriter().print(gson.toJson(map)); //map을 JSON문자열로 변환
+		
 	}
-
 }

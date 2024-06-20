@@ -46,19 +46,19 @@ function makeRow(obj = {}) {
 
 function removeTrElement(e) { //매개변수 e(이벤트)
 	console.log(e);
-	let did = this.dataset.myid; //data-delId
+	let did = this.dataset.myid; //data-delId 속성값을 들고옴
 	console.log(did);
 	//did = e.target.parentElement.parentElement.children[0].innerText;
-	let tr = document.getElementById(did);
-	const delAjax = new XMLHttpRequest();
-	delAjax.open('get', 'delAjax.do?id=' + did);
+	let tr = document.getElementById(did); //id가 did인 tr을 찾음
+	const delAjax = new XMLHttpRequest(); //새로운 XMLHttpRequest객체 생성
+	delAjax.open('get', 'delAjax.do?id=' + did); //URL 요청
 	delAjax.send();
 	delAjax.onload = function() {
-		let result = JSON.parse(delAjax.responseText);
+		let result = JSON.parse(delAjax.responseText); //형식변환
 		console.log(result);
-		if (result.retCode == 'OK') {
+		if (result.retCode == 'OK') { //응답의 retCode가 OK이면 정상삭제 메세지 표시
 			alert('정상삭제');
-			tr.remove();
+			tr.remove(); //tr요소를 제거
 		}
 	}
 }
