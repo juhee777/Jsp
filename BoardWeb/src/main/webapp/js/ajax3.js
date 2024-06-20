@@ -17,16 +17,16 @@ const fields = ['userId', 'userName', 'userPw', 'responsibility']
 function makeRow(obj = {}) {
 	let tr = document.createElement('tr');
 	tr.setAttribute('id', obj.userId); //<tr id='user01' ....>
-	tr.addEventListener('dblclick', function(e){
+	tr.addEventListener('dblclick', function(e) {
 		document.getElementById('myModal').style.display = 'block';
 		//선택된 사용자의 이름, 비번을 모달에 출력
 		console.log(e, this);
 		document.getElementById('modify_name').value =
-		this.children[1].innerHTML;
+			this.children[1].innerHTML;
 		document.getElementById('modify_pass').value =
-		this.children[2].innerHTML;
+			this.children[2].innerHTML;
 		document.getElementById('modify_id').value =
-		this.children[0].innerHTML;
+			this.children[0].innerHTML;
 	})
 	fields.forEach(field => {
 		let td = document.createElement('td');
@@ -64,25 +64,41 @@ function removeTrElement(e) { //매개변수 e(이벤트)
 }
 //수정이벤트
 document.getElementById('modBtn').addEventListener('click', function() {
-	let id = document.getElementById('modify_id').value;
+	let id = document.getElementById('modify_id').value; //user99
 	let name = document.getElementById('modify_name').value;
 	let pass = document.getElementById('modify_pass').value;
+	console.log('updAjax.do?nm=' + name + '&id=' + id + '&pw=' + pass);
+	
 	
 	//ajax생성
 	//정상적으로 정보가 업데이트되면 화면 수정
 	//수정이 안됐으면 화면수정X
 	const updAjax = new XMLHttpRequest();
-	updAjax.open('get');
+	updAjax.open('get', 'updAjax.do?nm=' + name + '&id=' + id + '&pw=' + pass);
 	updAjax.send();
+	updAjax.onload = function() {
+		let result = JSON.parse(updAjax.responseText);
+		console.log(result);
+		if (result.retCode == 'OK') {
+			console.log(this)
+			document.getElementById('modify_name').value =
+				this.children[1].innerHTML;
+			document.getElementById('modify_pass').value =
+				this.children[2].innerHTML;
+			alert('정상수정');
+		} else {
+			alert('수정실패')
+		}
+	}
 
-	
+
 	let targetTr = document.getElementById(id);
 	targetTr.children[1].innerHTML = name;
 	targetTr.children[2].innerHTML = pass;
-	
+
 	//모달창 닫기
 	document.getElementById('myModal').style.display = 'none';
-	
+
 })
 //등록버튼을 누르면 데이터 전송
 //등록이벤트

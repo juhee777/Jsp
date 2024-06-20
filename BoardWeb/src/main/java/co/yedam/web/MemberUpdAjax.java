@@ -24,6 +24,7 @@ public class MemberUpdAjax implements Control {
 		mvo.setUserId(id);
 		mvo.setUserPw(pw);
 		mvo.setUserName(nm);
+		System.out.println(mvo);
 		
 		BoardService svc = new BoardServicrImpl();
 		if(svc.updMemberAjax(mvo)) {
