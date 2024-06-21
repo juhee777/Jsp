@@ -15,9 +15,9 @@ public class ReplyServicelmpl implements ReplyService {
 	ReplyMapper mapper = sqlSession.getMapper(ReplyMapper.class);
 	
 	@Override
-	public List<ReplyVO> replyList(int boardNo) {
+	public List<ReplyVO> replyList(int boardNo, int page) {
 		// TODO Auto-generated method stub
-		return mapper.selectList(boardNo);
+		return mapper.selectListPaging(boardNo, page);
 	}
 	
 	@Override
@@ -37,6 +37,12 @@ public class ReplyServicelmpl implements ReplyService {
 	public boolean removeReply(int replyNo) {
 		// TODO Auto-generated method stub
 		return mapper.deleteReply(replyNo) == 1;
+	}
+	
+	@Override
+	public int getTotalCount(int bno) {
+		// TODO Auto-generated method stub
+		return mapper.selectReplyCnt(bno);
 	}
 	
 	

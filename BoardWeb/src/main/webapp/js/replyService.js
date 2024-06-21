@@ -5,18 +5,11 @@
 
 const svc = {
 	//목록.
-	replyList(bno = 1, successCall) {
+	replyList(param = {bno: 1, page: 1}, successCall) {
 		const xhtp = new XMLHttpRequest();
-		xhtp.open('get', 'replyListJson.do?bno=' + bno);
+		xhtp.open('get', 'replyListJson.do?bno=' + bno + '&page=' + param.page);
 		xhtp.send();
-		xhtp.onload = function() {
-			let data = JSON.parse(this.responseText);
-			console.log(data);
-			data.forEach(reply => {
-				let li = cloneRow(reply);
-				document.querySelector('div.content>ul').appendChild(li);
-			})
-		};
+		xhtp.onload = successCall;
 	},
 	//단건조회
 	getReply() {
@@ -34,6 +27,12 @@ const svc = {
 	removeReply(rno = 1, successCall) {
 		const xhtp = new XMLHttpRequest();
 		xhtp.open('get', 'removeReply.do?rno=' + rno);
+		xhtp.send();
+		xhtp.onload = successCall;
+	},
+	replyTotalCnt(bno = 1, successCall){
+		const xhtp = new XMLHttpRequest();
+		xhtp.open('get', 'replyTotalCnt.do?bno=' + bno);
 		xhtp.send();
 		xhtp.onload = successCall;
 	}
