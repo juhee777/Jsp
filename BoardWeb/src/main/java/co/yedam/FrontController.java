@@ -102,9 +102,10 @@ public class FrontController extends HttpServlet {
 		//댓글관련
 		map.put("/replyListJson.do", new ReplyList());
 		map.put("/removeReply.do", new RemoveReply());
-		map.put("/addReply.do", new AddReply());
+		map.put("/addReply.do", new AddReply()); //댓글추가
 		//댓글전체건수
 		map.put("/replyTotalCnt.do", new TotalCnt());
+		//공공데이터
 		map.put("/publicData.do", new PublicData());
 	}
 

@@ -89,7 +89,7 @@ function addReplyFnc() {
 		return;
 	}
 	
-	svc.addReply({replyer, reply, bno}, addReplyCallback);
+	svc.addReply({replyer, reply, bno}, addReplyCallback); //등록
 } //end of addReplyFnc()
 
 function addReplyCallback(){
