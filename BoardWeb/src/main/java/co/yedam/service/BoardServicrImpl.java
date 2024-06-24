@@ -1,6 +1,7 @@
 package co.yedam.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -13,14 +14,13 @@ import co.yedam.vo.BoardVO;
  */
 import co.yedam.vo.MemberVO;
 
-public class BoardServicrImpl  implements BoardService{
-	SqlSession sqlSession =
-			DataSource.getInstance().openSession(true); // true를 매개값으로 넣으면 자동커밋
+public class BoardServicrImpl implements BoardService {
+	SqlSession sqlSession = DataSource.getInstance().openSession(true); // true를 매개값으로 넣으면 자동커밋
 	BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
 
 	@Override
 	public List<BoardVO> boardList(SearchVO search) {
-		//mapper 등록된 기능 활용
+		// mapper 등록된 기능 활용
 		return mapper.boardListPaging(search);
 	}
 
@@ -29,7 +29,7 @@ public class BoardServicrImpl  implements BoardService{
 		// TODO Auto-generated method stub
 		return mapper.getTotalCnt(search);
 	}
-	
+
 	@Override
 	public BoardVO getBoard(int bno) {
 		return mapper.selectBoard(bno);
@@ -52,45 +52,58 @@ public class BoardServicrImpl  implements BoardService{
 		// TODO Auto-generated method stub
 		return mapper.deleteBoard(bno) == 1;
 	}
-	
+
 	@Override
 	public MemberVO checkMember(String id, String pw) {
 		// TODO Auto-generated method stub
 		return mapper.selectMember(id, pw);
 	}
-	
+
 	@Override
 	public boolean signUpBoard(MemberVO bvo) {
 		// TODO Auto-generated method stub
 		return mapper.insertMember(bvo) == 1;
 	}
-	
+
 	@Override
 	public List<MemberVO> memberList() {
 		// TODO Auto-generated method stub
 		return mapper.memberList();
 	}
-	
+
 	@Override
 	public boolean addMemberAjax(MemberVO bvo) {
 		return mapper.insertMemberAjax(bvo) == 1;
 	};
-	
+
 	@Override
 	public boolean checkMemberId(String id) {
 		// TODO Auto-generated method stub
 		return mapper.selectMemberAjax(id) == 1;
 	}
-	
+
 	@Override
 	public boolean delMemberAjax(String id) {
 		// TODO Auto-generated method stub
 		return mapper.deleteMemberAjax(id) == 1;
 	}
-	
+
 	@Override
 	public boolean updMemberAjax(MemberVO bvo) {
 		// TODO Auto-generated method stub
 		return mapper.updateMemberAjax(bvo) == 1;
 	}
+
+	@Override
+	public boolean addMemberImage(MemberVO bvo) {
+		// TODO Auto-generated method stub
+		return mapper.insertMember(bvo) == 1;
+	}
+
+	@Override
+	public Map<String, String> addMember(MemberVO bvo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -16,6 +16,8 @@
 	<button id="findBtn" type="button" class="btn btn-primary">검색</button>
 </div>
 
+<button id="centerDB">센터DB생성</button>
+
 <table class="table">
 	<thead>
 		<tr>

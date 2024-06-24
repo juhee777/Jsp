@@ -3,16 +3,44 @@
  */
 let url = 'https://api.odcloud.kr/api/15077586/v1/centers?page=1&perPage=284&serviceKey=qCwQYxNXeK%2FaB1Ngf9oNZDttjmjQ6ku1OdR6%2Fd0Jj5EIdqOxMXolplih%2BYjTqB4uxCuK636co3tf9T5%2Fr9OLvw%3D%3D';
 
+//센터정보생성
+document.getElementById('centerDB').addEventListener('click', createCenterInfo);
+
+function createCenterInfo(){
+	//1. open API호출
+	//2. 컨트롤 호출 DB입력
+	fetch(url)
+	.then(result => result.json()) 
+	.then(result => {
+		let centers = result.data //[{}, {}, {}] => [{"id":"hong"}]
+		return fetch('CenterInfo.do', { //옵션{}을 담은 객체를 가지고 전달
+			method: 'post', //전달되는 값이 body영역에 저장
+			headers: {'Content-type':"application/json"}, //키=값&키=값
+			body: JSON.stringify(centers) //객체 -> json문자열
+		}) 
+	})
+	.then(result => result.json()) //{"txnCnt": 3} //리턴한 값을 then으로 또 받음
+	.then(result => {
+		if(result.txnCnt > 0){
+			alert(result.txnCnt + '건 처리 성공')
+		}else{
+			alert('실패')
+		}
+	})
+	.catch(err => console.log(err))
+}
 let centerList = []; // 검색된 센터의 전체정보를 담아놓는 용도.
 let sidoList = []; // 시도목록을 담아놓는 용도.
 const target = document.querySelector('#centerList'); // 하위목록.
 const selectSido = document.querySelector('#searchList'); // select태그.
 
 fetch(url)
-	.then(result => result.json()) // [{"id":1, "center.."},{},{}] -> [{},{}]
+	.then(result => result.json()) // [{"id":1, "center.."},{},{}] -> [{},{}] 
 	.then(result => {
+		console.log(result);
 		centerList = result.data; // 전역변수를 centerList에 저장.
 		result.data.forEach((center, idx) => {
+			//console.log(center);
 			target.appendChild(makeRow(center)); // target 요소의 자식으로 추가
 		});
 		// 시도리스트 만들기.
@@ -29,7 +57,8 @@ fetch(url)
 			selectSido.appendChild(opt);
 		})
 
-	});
+	})
+	.catch(err => console.log(err)); //실패했을 때
 
 // 2) 주소검색 기능.
 //document.querySelector('#findBtn').addEventListener('click', searchByAddress);
@@ -40,7 +69,7 @@ selectSido.addEventListener('change', searchBysido);
 function searchBysido() {
 	target.innerHTML = '';
 	centerList.filter(center => center.sido == this.value) //"centerList"라는 데이터 배열에서 사용자가 선택한 시도와 일치하는 센터 정보를 필터링합니다.
-		//필터링된 센터 정보를 반복하면서 "makeRow" 함수를 호출하여 각 센터 정보를 HTML 테이블 행으로 만들고, 이를 "target" 요소에 추가합니다.
+		//필터링된 센터 정보를 반복하면서 "makeRow" 함수를 호출하여 각 센터 정보를 HTML 테이블 행으로 만들고 이걸 "target" 요소에 추가
 		.forEach(center => target.appendChild(makeRow(center)));
 }
 
@@ -77,6 +106,10 @@ const fields = ['id', 'centerName', 'phoneNumber', 'address'];
 
 function makeRow(center = {}) {
 	let tr = document.createElement('tr');
+	tr.addEventListener('click', function() { //이벤트
+		//location.href = "map.do?x="+center.lat+"&y="+center.lng; //센터의 위도, 경도 map으로
+		window.open("map.do?x=" + center.lat + "&y=" + center.lng +"&centerName=" + center.centerName);
+	});
 	fields.forEach(field => {
 		let td = document.createElement('td');
 		td.innerHTML = center[field];
