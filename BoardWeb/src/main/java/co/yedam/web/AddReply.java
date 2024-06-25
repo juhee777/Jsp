@@ -1,0 +1,58 @@
+package co.yedam.web;
+
+import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import co.yedam.common.Control;
+import co.yedam.service.ReplyService;
+import co.yedam.service.ReplyServicelmpl;
+import co.yedam.vo.ReplyVO;
+
+public class AddReply implements Control {
+
+	@Override
+	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		req.setCharacterEncoding("utf-8");
+		resp.setContentType("text/json;charset=utf-8");
+		
+		String bno = req.getParameter("bno");
+		String replyer = req.getParameter("replyer");
+		String reply = req.getParameter("reply");
+		
+		Map<String , Object> map = new HashMap<>();
+		Gson gson = new GsonBuilder().create();
+		
+		ReplyVO rvo = new ReplyVO();
+		rvo.setBoardNo(Integer.parseInt(bno));
+		rvo.setReply(reply);
+		rvo.setReplyer(replyer);
+		System.out.println(rvo);
+		
+		ReplyService svc = new ReplyServicelmpl();
+		try {//insert값이 정상적으로 처리된 경우를 제외하고는 오류로 보겠다
+			if(svc.registerReply(rvo)) { //insert값이 정상적으로 처리된 경우
+				rvo.setReplyDate(new Date());
+				System.out.println(rvo);
+				map.put("retCode", "OK"); //retCode키에 OK메세지 저장
+				map.put("retVal", rvo); //retVal키에 rvo객체 저장
+			}
+		}catch(Exception e) {//오류발생시
+			e.printStackTrace();
+			map.put("retCode", "NG");
+			map.put("retVal", "처리중 오류가 발생했습니다");
+		}
+		//웹브라우즈 출력.
+		resp.getWriter().print(gson.toJson(map)); //map을 JSON문자열로 변환
+		
+	}
+}
