@@ -17,14 +17,14 @@ public class AddBook implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String cod = req.getParameter("bookCode");
-		String bname = req.getParameter("bookName");
+		String bname = req.getParameter("bookTitle");
 		String author = req.getParameter("author");
 		String publisher = req.getParameter("company");
 		String money = req.getParameter("price");
 		
 		BookVO bvo = new BookVO();
 		bvo.setBookCode(cod);
-		bvo.setBookName(bname);
+		bvo.setBookTitle(bname);
 		bvo.setAuthor(author);
 		bvo.setCompany(publisher);
 		bvo.setPrice(money);

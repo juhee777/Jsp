@@ -40,8 +40,8 @@ function allCheckFnc(){
 function removeMemberFnc(){
 	let targetTr = document.querySelectorAll('#memberList tr');
 	for(let tr of targetTr){
-		console.log(tr.children[5].children[0].checked);
-		if(tr.children[5].children[0].checked){
+		console.log(tr.children[0].children[0].checked);
+		if(tr.children[0].children[0].checked){
 			tr.remove();
 		}
 	}

@@ -26,7 +26,7 @@
 	
 	<insert id="insertBook" parameterType="co.yedam.book.vo.BookVO">
 		insert into tbl_books(book_code, book_title, author, company, price)
-		values(#{bookCode}, #{bookName},  #{author}, #{company},  #{price});
+		values(#{bookCode}, #{bookTitle},  #{author}, #{company},  #{price});
 	</insert>
     
     <delete id="deleteBook">
