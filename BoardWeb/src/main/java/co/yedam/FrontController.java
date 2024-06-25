@@ -98,7 +98,7 @@ public class FrontController extends HttpServlet {
 		//ajax연습
 		map.put("/ajax.do", new AjaxForm());
 		map.put("/membersAjax.do", new MemberAjax());
-		map.put("/addAjax.do", new MemberAddAjax());//기능
+		map.put("/addAjax.do", new MemberAddAjax());//등록기능
 		map.put("/checkIdAjax.do", new CheckIdAjax());
 		map.put("/delAjax.do", new MemberDelAjax());//삭제기능
 		map.put("/updAjax.do", new MemberUpdAjax());//수정기능

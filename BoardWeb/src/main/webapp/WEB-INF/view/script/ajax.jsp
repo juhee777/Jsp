@@ -94,7 +94,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
                       </select></td>
     </tr>
     <tr>
-     <th>파일</th><td></td>
+     <th>파일</th><td><input class="form-control" type="file" id="myPic"></td>
     </tr>
     <tr>
       <td colspan="2"><button id="addBtn">등록</button></td>
@@ -110,6 +110,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 				<th>이름</th>
 				<th>비밀번호</th>
 				<th>권한</th>
+				
 				<th>삭제</th>
 			</tr>
 			

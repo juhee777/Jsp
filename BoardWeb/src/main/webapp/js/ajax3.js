@@ -68,8 +68,8 @@ document.getElementById('modBtn').addEventListener('click', function() {
 	let name = document.getElementById('modify_name').value;
 	let pass = document.getElementById('modify_pass').value;
 	console.log('updAjax.do?nm=' + name + '&id=' + id + '&pw=' + pass);
-	
-	
+
+
 	//ajax생성
 	//정상적으로 정보가 업데이트되면 화면 수정
 	//수정이 안됐으면 화면수정X
@@ -103,6 +103,47 @@ document.getElementById('modBtn').addEventListener('click', function() {
 //등록버튼을 누르면 데이터 전송
 //등록이벤트
 document.getElementById('addBtn').addEventListener('click', function() {
+	const formData = new FormData(); // form-data처리.
+	const fileField = document.querySelector('#myPic');
+
+	formData.append("id", document.getElementById('uid').value);
+	formData.append("pw", document.getElementById('upw').value);
+	formData.append("name", document.getElementById('uname').value);
+	formData.append("myImage", fileField.files[0]);
+
+	upload(formData);
+})
+
+//fetch 파일 업로드
+async function upload(formData) {
+	try {
+		const response = await fetch("signUpBoard.do", {
+			method: "PUT",
+			body: formData,
+		});
+		const result = await response.json();
+		console.log("성공:", result);
+		if (result.retCode == 'OK') { //등록한 값 목록에 바로 보여주기
+			let id = document.getElementById('uid').value;
+			let pw = document.getElementById('upw').value;
+			let nm = document.getElementById('uname').value;
+			let auth = document.getElementById('auth').value;
+			let img = document.getElementById('myPic').value;
+			let newMem = { userId: id, userName: nm, userPw: pw, image: img, responsibility: auth}
+			alert("정상등록");
+			document.getElementById('list').appendChild(makeRow(newMem)) //
+		} else {
+			alert('실패');
+		}
+	} catch (error) {
+		console.error("실패:", error);
+	}
+}// end if upload(formData)
+
+
+
+function addMemberFunc() { //등록
+
 	let id = document.getElementById('uid').value;
 	let pw = document.getElementById('upw').value;
 	let nm = document.getElementById('uname').value;
@@ -122,7 +163,8 @@ document.getElementById('addBtn').addEventListener('click', function() {
 			alert('실패');
 		}
 	}
-})
+
+}// end of addMemberFunc()
 
 //id존재하는지 체크하는 이벤트
 document.getElementById('uid').addEventListener('change', function() {

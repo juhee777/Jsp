@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <h3>회원가입</h3>
-<form action="memberList.do" method="post" enctype="multipart/form-data">
+<form action="signUpBoard.do" method="post" enctype="multipart/form-data">
 <table class="table">
   <tr>
     <th>아이디</th><td><input type="text" name="id"></td>
